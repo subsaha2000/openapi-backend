@@ -134,7 +134,7 @@ describe('OpenAPIBackend', () => {
 
   test('can be initalised using a valid JSON file', async () => {
     // @TODO: read a complex document with as many features as possible here
-    const api = new OpenAPIBackend({ definition: examplePetAPIJSON, strict: true });
+    const api = new OpenAPIBackend({ definition: examplePetAPIJSON, strict: true, validate: true });
     await api.init();
     expect(api.initalized).toEqual(true);
     expect(api.router.getOperations()).toHaveLength(8);

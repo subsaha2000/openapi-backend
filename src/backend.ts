@@ -3,7 +3,7 @@
 
 import * as _ from 'lodash';
 import type { Options as AjvOpts } from 'ajv';
-import OpenAPISchemaValidator from 'openapi-schema-validator';
+import OpenAPISchemaValidator from '../src/validate/index';
 import { parse as parseJSONSchema, dereference } from './refparser';
 import { dereferenceSync } from 'dereference-json-schema';
 
@@ -695,7 +695,7 @@ export class OpenAPIBackend<D extends Document = Document> {
    * @memberof OpenAPIBackend
    */
   public validateDefinition(): D {
-    const validateOpenAPI = new OpenAPISchemaValidator({ version: 3 });
+    const validateOpenAPI = new OpenAPISchemaValidator({ version: 3.1 });
     const { errors } = validateOpenAPI.validate(this.document);
     if (errors.length) {
       const prettyErrors = JSON.stringify(errors, null, 2);
